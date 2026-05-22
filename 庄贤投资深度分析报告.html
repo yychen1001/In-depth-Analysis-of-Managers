@@ -324,7 +324,7 @@
     width:100%;
     margin-left:0;
     display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:6px;
   }
   .top-actions button{
@@ -374,7 +374,7 @@
 </head>
 <body>
 <div class="progress" id="progress"></div>
-<header class="topbar"><div class="brand"><span class="brand-mark"></span><span>In-depth Analysis of Managers</span></div><nav class="top-actions" aria-label="页面操作"><button id="downloadWord" type="button" title="下载 DOCX 文档">下载WORD</button><button id="downloadMd" type="button" title="下载 Markdown 文档">下载MD</button><span id="downloadStatus" class="download-status" aria-live="polite"></span><button id="printPage" type="button" title="打印或导出 PDF">打印</button></nav></header>
+<header class="topbar"><div class="brand"><span class="brand-mark"></span><span>In-depth Analysis of Managers</span></div><nav class="top-actions" aria-label="页面操作"><button id="downloadWord" type="button" title="下载 DOCX 文档">下载WORD</button><button id="downloadMd" type="button" title="下载 Markdown 文档">下载MD</button><span id="downloadStatus" class="download-status" aria-live="polite"></span></nav></header>
 <button class="sidebar-toggle" id="sidebarToggle" type="button" title="折叠目录" aria-label="折叠目录"></button>
 <div class="sidebar-resizer" id="sidebarResizer" aria-hidden="true"></div>
 <main class="shell"><aside class="sidebar" id="sidebar" aria-label="报告目录"><div class="sidebar-title"><span class="sidebar-label">目录</span><button class="mobile-toc-toggle" id="mobileTocToggle" type="button" title="展开/折叠目录" aria-label="展开/折叠目录"></button></div><nav id="toc" class="toc"></nav></aside><section class="page"><section class="hero"><div class="kicker">公开数据资料 · 截至 2026-04-30</div><h1>庄贤投资深度分析报告</h1></section>
@@ -692,7 +692,7 @@ function inline(text){return escapeHtml(text).replace(/\*\*(.+?)\*\*/g,"<strong>
 function escapeHtml(text){return text.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}function stripHtml(text){return text.replace(/<[^>]+>/g,"")}function slugify(text){return text.trim().replace(/[^\p{L}\p{N}]+/gu,"-").replace(/^-|-$/g,"").slice(0,80)}
 function injectReadableBlocks(){}
 function buildToc(){const headings=[...reportEl.querySelectorAll("h2,h3")];tocEl.innerHTML=headings.map(h=>"<a href=\"#"+h.id+"\" class=\"depth-"+(h.tagName==="H3"?"3":"2")+"\">"+h.textContent+"</a>").join("")}
-function bindUtilityButtons(){document.getElementById("printPage").addEventListener("click",()=>window.print());document.getElementById("downloadWord").addEventListener("click",downloadWord);document.getElementById("downloadMd").addEventListener("click",downloadMd);document.getElementById("sidebarToggle").addEventListener("click",toggleSidebar);if(mobileTocToggleEl)mobileTocToggleEl.addEventListener("click",toggleMobileToc);backTopEl.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));syncResponsiveToc();window.addEventListener("resize",syncResponsiveToc,{passive:true})}
+function bindUtilityButtons(){document.getElementById("downloadWord").addEventListener("click",downloadWord);document.getElementById("downloadMd").addEventListener("click",downloadMd);document.getElementById("sidebarToggle").addEventListener("click",toggleSidebar);if(mobileTocToggleEl)mobileTocToggleEl.addEventListener("click",toggleMobileToc);backTopEl.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));syncResponsiveToc();window.addEventListener("resize",syncResponsiveToc,{passive:true})}
 function downloadFile(filename){const link=document.createElement("a");link.href=encodeURI(filename);link.download=filename;document.body.appendChild(link);link.click();link.remove();setDownloadStatus("已开始下载")}
 function downloadWord(){downloadFile("庄贤投资深度分析报告.docx")}
 function downloadMd(){downloadFile("庄贤投资深度分析报告.md")}
